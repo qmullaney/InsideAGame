@@ -1,113 +1,63 @@
-export default class Surface{
-    constructor(){
-        this.speed = 10;
-        this.circle1 = {radius: 20, x: 5, y: 5};
-        this.circle2 = {radius: 800, x: -100, y: 1000};
-        let that = this;
-        document.addEventListener('keydown', e => {
-            switch (e.keyCode) {
-                case 37:
-                    that.circle1.x -= this.speed
-                    if (this.collision()) that.circle1.x += this.speed
-                    break
-                case 39:
-                    that.circle1.x += this.speed
-                    if (this.collision()) that.circle1.x -= this.speed
-                    break
-                case 38:
-                    that.circle1.y -= this.speed
-                    if (this.collision()) that.circle1.y += this.speed
-                    break
-                case 40:
-                    that.circle1.y += this.speed
-                    if (this.collision()) that.circle1.y -= this.speed
-                    break
-            }
-        })
+const Player = require("./player")
+export class Surface{
+    constructor(ctx){
+        this.boundaries = [];
 
+        let wallCircle = {type: "circle", radius: 300, x: 200, y: 250};
+        let leftStuffCircle = {type: "circle", radius: 400, x: 0, y: 900};
+        let rightStuffCircle = {type: "circle", radius: 500, x: 1100, y: 1000};
+        let wallLine = {type: "lineTop", y: ctx.canvas.height * .75}
+        let closeLine = {type: "lineBot", y: ctx.canvas.height * .99}
+        let chair = {type: "box", x: ctx.canvas.width * .58, y: ctx.canvas.height * .9}
 
-        document.addEventListener('keyup', e => {
-            // debugger
-            switch (e.keyCode) {
-                case 37:
-                    that.circle1.x += 0
-                    break
-                case 39:
-                    that.circle1.x += 0
-                    break
-                case 38:
-                    that.circle1.y += 0
-                    break
-                case 40:
-                    that.circle1.y -= 0
-                    break
-            }
-        });
-        
-
-       
-    }
-
-    collision(){
-  
-        let dx = this.circle1.x - this.circle2.x;
-        let dy = this.circle1.y - this.circle2.y;
-
-        let dist = Math.sqrt(dx * dx + dy * dy);
-        return dist < this.circle1.radius + this.circle2.radius;
-
-    }
-
-    draw(ctx){
-        ctx.clearRect(0,0, ctx.canvas.width, ctx.canvas.height);
-
-        ctx.beginPath();
-        ctx.arc(this.circle1.x, this.circle1.y, this.circle1.radius, 0, 2*Math.PI, true);
-        ctx.fill();
-        // ctx.stroke();
-
-        // ctx.beginPath();
-        // ctx.arc(this.circle2.x, this.circle2.y, this.circle2.radius, 0, 2*Math.PI, true);
-        // ctx.fill();
-        // ctx.stroke();
-
+        this.boundaries.push(wallCircle, leftStuffCircle, rightStuffCircle, wallLine, closeLine, chair);
         
     }
 
+    collision(player){
+        let collided = false;
+        // this.boundaries.forEach(el => {
+        //     console.log("hi");
+        // })
+        for (let i = 0; i < this.boundaries.length; i++){
+            let el = this.boundaries[i];
+            if (el.type == "circle"){
+                let dx = player.x - el.x;
+                let dy = player.y - el.y;
+                
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                // console.log(dist)
+                if (dist < el.radius) {
+                    collided = true;
+                    
+                    // console.log(`${el.radius} rad, ${el.x}, ${el.y}, player: $el`)
+                }
+
+            }else if (el.type == "lineTop"){
+                if (el.y > player.y) {
+
+                    // console.log('collided lineTop: ' + el.y + ", " + player.y);
+                    collided = true;
+                }
+
+            }else if (el.type == "lineBot"){
+                if (el.y <= player.y) {
+                    collided = true;
+                    // console.log('collided lineBot')
+                }
+
+            }else{
+                if (el.x <= player.x && el.y >= player.y) {
+                    collided = true;
+                    // console.log('collided box: ' + el.x + " " + el.y + ", " + player.x + " " + player.y);
+
+                }
+            }
+        }
+        
+        return collided;
+    }
 }
 
- // let cnvsW = ctx.canvas.width;
-        // let cnvsH = ctx.canvas.height;
-
-        // this.leftCornerX = cnvsW * .325;
-        // this.leftCornerY = cnvsH * .78;
-
-        // this.dresserX = cnvsW * .19;
-        // this.dresserY = cnvsH * .82;
-
-        // this.stuffLeftX = cnvsW * .36;
-        // this.stuffLeftY = cnvsH * .99;
-
-        // this.chairX = cnvsW * .58;
-        // this.chairY = cnvsH * .9;
-
-        // this.stuffRightX = cnvsW * .7;
-        // this.stuffRightY = cnvsH * .99;
-
-        // this.midWallX = cnvsW * .57;
-        // this.midWallY = cnvsH * .78;
-
-        // this.pianoX = cnvsW * .8;
-        // this.pianoY = cnvsH * .9;
-
-
-        // ctx.beginPath();
-        // ctx.moveTo(this.leftCornerX, this.leftCornerY);
-        // ctx.lineTo(this.dresserX, this.dresserY);
-        // ctx.lineTo(this.stuffLeftX, this.stuffLeftY);
-        // ctx.lineTo(this.stuffRightX, this.stuffRightY);
-        // ctx.lineTo(this.pianoX, this.pianoY);
-        // ctx.lineTo(this.chairX, this.chairY);
-        // ctx.lineTo(this.midWallX, this.midWallY);
-        
-        // ctx.fill();
+// module.exports = Surface;
+// export { Surface };
