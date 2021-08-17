@@ -17,6 +17,16 @@ export function setUpKeyHandlers(player, surface){
                 player.down = true;
                 // if (surface.collision(player)) player.down = false;
                 break
+            case 68:
+                player.status = 'SITTING'
+                break
+            case 69:
+                if (player.status == 'SITTING'){
+                    player.status = 'STANDING'
+                    player.x = 665;
+                    player.y = 595;
+                }
+                break;
         }
     })
 

@@ -1,8 +1,10 @@
 class Player{
     constructor(){
-        this.img = new Image();
-        this.img.src = './src/assets/bo-standing-forewards.png';
-        this.status = "SITTING";
+        this.imgStanding = new Image();
+        this.imgStanding.src = './src/assets/bo-standing-forewards.png';
+        this.imgSitting = new Image();
+        this.imgSitting.src = './src/assets/bo-sitting.png'
+        this.status = "STANDING";
         this.x = 665;
         this.y = 595;
         this.speed = 5;
@@ -10,10 +12,10 @@ class Player{
         this.down = false;
         this.left = false;
         this.right = false;
+        
     }
 
     drawPlayer(ctx, surface){
-        // debugger
         if (this.up) {
             this.y -= this.speed;
             if (surface.collision(this)){
@@ -41,9 +43,15 @@ class Player{
         
     
         console.log(this.x + ", " + this.y)
-
         // ctx.clearRect(0,0, ctx.canvas.width, ctx.canvas.height);
-        ctx.drawImage(this.img, 400, 200, 5, 5, this.x, this.y, 10, 300);
+
+        if (this.status == 'STANDING') {
+            ctx.drawImage(this.imgStanding, this.x - 110, this.y - 400);
+        }else if (this.status == 'SITTING'){
+            this.x = 725;
+            this.y = 595;
+            ctx.drawImage(this.imgSitting, this.x - 110, this.y - 300);
+        }
     }
 }
 
