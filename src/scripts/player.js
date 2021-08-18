@@ -18,12 +18,12 @@ class Player{
         this.boShining = new Image(); this.boShining.src = './src/assets/shining/bo-flashlight-front.png';
         this.boShiningLeft = new Image(); this.boShiningLeft.src = './src/assets/shining/bo-flashlight-left.png';
         this.boShiningRight = new Image(); this.boShiningRight.src = './src/assets/shining/bo-flashlight-right.png';
-        this.flashlight = new Image(); this.flashlight.src = './src/assets/bo-sitting.png';
+        this.flashlight = new Image(); this.flashlight.src = './src/assets/flashlight.png';
         this.inputStatus = "STANDING";
         this.status = "STANDING";
         this.x = 665;
         this.y = 595;
-        this.speed = 5;
+        this.speed = 3;
         this.up = false;
         this.down = false;
         this.left = false;
@@ -39,7 +39,7 @@ class Player{
 
 
     updatePlayer(surface, actionZone){
-        if (this.status != 'SITTING'){
+        if (this.status != 'SITTING' && this.cryFrame == 0){
             if (this.up) {
                 this.lastMoved = "back";
                 this.y -= this.speed;
@@ -131,9 +131,11 @@ class Player{
 
     drawPlayer(ctx){
 
-        // if (this.status != 'SHINING'){
-        //     ctx.drawImage(this.flashlight, 200, 200);
-        // }
+
+
+        if (this.status != 'SHINING'){
+            ctx.drawImage(this.flashlight, 180, 225);
+        }
         
         if (this.status == 'SITTING'){
             if (this.cryFrame > 0){
@@ -171,9 +173,10 @@ class Player{
                 tens = tens % 10;
                 
                 if (tens % 2 == 0){
-                    ctx.drawImage(this.boStandingCrying1, this.x - 70, this.y - 380);
+                    // ctx.drawImage(this.boStandingCrying1, this.x - 70, this.y - 380);
+                    ctx.drawImage(this.boStandingCrying1, this.x - 70 - (this.xScale()/2), this.y - 380 - this.yScale(), this.boStandingCrying1.width + this.xScale(), this.boStandingCrying1.height + this.yScale());
                 }else{
-                    ctx.drawImage(this.boStandingCrying2, this.x - 70, this.y - 380);
+                    ctx.drawImage(this.boStandingCrying2, this.x - 70 - (this.xScale()/2), this.y - 380 - this.yScale(), this.boStandingCrying2.width + this.xScale(), this.boStandingCrying2.height + this.yScale());
                 }
             }else if (this.doorFrame > 0){
                 let tens = Math.floor(this.doorFrame / 10);
@@ -184,98 +187,53 @@ class Player{
                     ctx.drawImage(this.boStandingDoor2, this.x - 110, this.y - 400);
                 }
             }else if (this.lastMoved == 'front'){
-                ctx.drawImage(this.boStanding, this.x - 110, this.y - 400);
+                ctx.drawImage(this.boStanding, this.x - 110 - (this.xScale()/2), this.y - 420 - this.yScale(), this.boStanding.width + this.xScale(), this.boStanding.height + this.yScale());
             }else if (this.lastMoved == 'left'){
-                ctx.drawImage(this.boStandingLeft, this.x - 110, this.y - 400);
+                ctx.drawImage(this.boStandingLeft, this.x - 110 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boStandingLeft.width + this.xScale(), this.boStandingLeft.height + this.yScale());
             }else if (this.lastMoved == 'right'){
-                ctx.drawImage(this.boStandingRight, this.x - 110, this.y - 400);
+                ctx.drawImage(this.boStandingRight, this.x - 110 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boStandingRight.width + this.xScale(), this.boStandingRight.height + this.yScale());
             }else if (this.lastMoved == 'back'){
                 if (this.leftIsh){
-                    ctx.drawImage(this.boStandingLeft, this.x - 110, this.y - 400);
+                    ctx.drawImage(this.boStandingLeft, this.x - 110 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boStandingLeft.width + this.xScale(), this.boStandingLeft.height + this.yScale());
                 }else{
-                    ctx.drawImage(this.boStandingRight, this.x - 110, this.y - 400);
+                    ctx.drawImage(this.boStandingRight, this.x - 110 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boStandingRight.width + this.xScale(), this.boStandingRight.height + this.yScale());
                 }
             }
         }else if (this.status == 'SHINING'){
             if (this.cryFrame > 0){
-                ctx.drawImage(this.boStandingCrying, this.x - 110, this.y - 400);
+                ctx.drawImage(this.boStandingCrying, this.x - 110 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boStandingCrying.width + this.xScale(), this.boStandingCrying.height + this.yScale());
             }else if (this.doorFrame > 0){
-                ctx.drawImage(this.boStandingDoor, this.x - 110, this.y - 400);
+                // ctx.drawImage(this.boStandingDoor, this.x - 110, this.y - 400);
+                ctx.drawImage(this.boStandingDoor, this.x - 110 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boStandingDoor.width + this.xScale(), this.boStandingDoor.height + this.yScale());
             }else if (this.lastMoved == 'front'){
-                ctx.drawImage(this.boShining, this.x - 110, this.y - 400);
+                // ctx.drawImage(this.boShining, this.x - 110, this.y - 400);
+                ctx.drawImage(this.boShining, this.x - 110 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boShining.width + this.xScale(), this.boShining.height + this.yScale());
             }else if (this.lastMoved == 'left'){
-                ctx.drawImage(this.boShiningLeft, this.x - 180, this.y - 400);
+                // ctx.drawImage(this.boShiningLeft, this.x - 180, this.y - 400);
+                ctx.drawImage(this.boShiningLeft, this.x - 180 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boShiningLeft.width + this.xScale(), this.boShiningLeft.height + this.yScale());
             }else if (this.lastMoved == 'right'){
-                ctx.drawImage(this.boShiningRight, this.x - 80, this.y - 400);
+                // ctx.drawImage(this.boShiningRight, this.x - 80, this.y - 400);
+                ctx.drawImage(this.boShiningRight, this.x - 80 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boShiningRight.width + this.xScale(), this.boShiningRight.height + this.yScale());
             }else if (this.lastMoved == 'back'){
                 if (this.leftIsh){
-                    ctx.drawImage(this.boShiningLeft, this.x - 110, this.y - 400);
+                    // ctx.drawImage(this.boShiningLeft, this.x - 110, this.y - 400);
+                    ctx.drawImage(this.boShiningLeft, this.x - 180 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boShiningLeft.width + this.xScale(), this.boShiningLeft.height + this.yScale());
+
                 }else{
-                    ctx.drawImage(this.boShiningRight, this.x - 110, this.y - 400);
+                    // ctx.drawImage(this.boShiningRight, this.x - 110, this.y - 400);
+                    ctx.drawImage(this.boShiningRight, this.x - 80 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boShiningRight.width + this.xScale(), this.boShiningRight.height + this.yScale());
+
                 }
             }
         }
-
-
-
-
-
-        // if (this.status == 'STANDING') {
-        //     if (this.lastMoved == "right"){
-        //         ctx.drawImage(this.boStandingRight, this.x - 110, this.y - 400);
-        //     }else if(this.lastMoved == "left"){
-        //         ctx.drawImage(this.boStandingLeft, this.x - 110, this.y - 400);
-        //     }else {
-        //         ctx.drawImage(this.boStanding, this.x - 110, this.y - 400);
-        //     }
-
-        //     // ctx.drawImage(this.flashlight, )
-        // }else if (this.status == 'SITTING'){
-        //     if (position == 'chair'){
-        //         if (this.cry){
-        //             this.cryFrame += 1;
-        //             if (this.cryFrame < 200){
-        //                 this.x = 725;
-        //                 this.y = 595;
-        //                 ctx.drawImage(this.boSittingCrying, this.x - 110, this.y - 300);
-        //             }else {
-        //                 this.x = 725;
-        //                 this.y = 595;
-        //                 ctx.drawImage(this.boSitting, this.x - 110, this.y - 300);
-        //                 this.cry = false;
-        //                 this.cryFrame = 0;
-        //             }
-        //         }else{
-        //             this.x = 725;
-        //             this.y = 595;
-        //             ctx.drawImage(this.boSitting, this.x - 110, this.y - 300);
-        //         }
-        //         // ctx.drawImage(this.flashlight, )
-        //     }else{
-        //         this.status = 'STANDING';
-        //         ctx.drawImage(this.imgStanding, this.x - 110, this.y - 400);
-        //         // ctx.drawImage(this.flashlight, )
-        //     }
-            
-        // }else if (this.status == 'SHINING'){
-        //     if (position == 'flashlight'){
-        //         if (this.)
-        //         ctx.drawImage(this.imgFlashlight, this.x - 110, this.y - 400);
-        //     }
-        // }
     }
 
-    // direction(){
-    //     let dir = "";
-    //     if (this.down){
-    //         dir = "down";
-    //     }else if (this.up && this.movedLeft){
-    //         dir = "left";
-    //     }else if (this.up && !this.movedLeft){
-    //         dir = "right";
-    //     }
-    //     return dir;
-    // }
+    yScale(){
+        return (this.y - 500)* .5;
+    }
+    xScale(){
+        return this.yScale()*(1/3)
+    }
 }
 
 module.exports = Player;
