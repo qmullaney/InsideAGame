@@ -14,8 +14,8 @@ export class Game{
     }
 
     drawGame(ctx){
-        
-        this.player.drawPlayer(ctx, this.surface, this.actionZone);
+        this.player.updatePlayer(this.surface, this.actionZone);
+        this.player.drawPlayer(ctx);
     }
 }
 
