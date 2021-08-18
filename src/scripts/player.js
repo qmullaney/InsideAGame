@@ -23,14 +23,13 @@ class Player{
         this.status = "STANDING";
         this.x = 665;
         this.y = 595;
-        this.speed = 3;
+        this.speed = 4;
         this.up = false;
         this.down = false;
         this.left = false;
         this.right = false;
         this.lastMoved = "front";
         this.leftIsh = false;
-        this.frame = 0;
         this.cryFrame = 0;
         this.doorFrame = 0;
         this.musicFrame = 0;

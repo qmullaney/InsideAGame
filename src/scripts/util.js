@@ -51,5 +51,8 @@ export function setUpKeyHandlers(player, surface){
                 break
         }
     })
+    document.addEventListener('click', e => {
+        
+    })
 }
 
