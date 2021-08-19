@@ -18,7 +18,7 @@ ul {
   top: 0px;
   left: 0px;
   color: white;
-  display: block;
+  display: none;
   list-style-type: none;
 }
 
@@ -84,4 +84,9 @@ main {
 #ln {
   width: 70px;
   height: 70px;
+}
+
+#game-window {
+  border: 20px solid black;
+  height: 660px;
 }
