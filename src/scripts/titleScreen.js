@@ -2,7 +2,7 @@ class TitleScreen{
     constructor(){
         this.ssri = new Image(); this.ssri.src = './src/assets/titleScreen/ssri.png';
         this.inside = new Image(); this.inside.src = './src/assets/titleScreen/inside.png';
-        // this.newGame = new Image(); this.newGame.src = "";
+        this.blank = new Image(); this.blank.src = "./src/assets/titleScreen/blank.png";
     }
 
     drawSSRI(ctx){
@@ -11,6 +11,9 @@ class TitleScreen{
     
     drawInside(ctx){
         ctx.drawImage(this.inside, 0,0,ctx.canvas.width, ctx.canvas.height);
+    }
+    drawBlank(ctx){
+        ctx.drawImage(this.blank, 0,0, ctx.canvas.width, ctx.canvas.height);
     }
 }
 

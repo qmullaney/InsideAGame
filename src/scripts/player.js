@@ -33,6 +33,10 @@ class Player{
         this.cryFrame = 0;
         this.doorFrame = 0;
         this.musicFrame = 0;
+        this.accomplishments = {flashlight: false, piano: false, door: false, cry: false};
+        this.over = false;
+        this.end = document.querySelector("#end");
+        this.end.style.display = "none";
     }
 
 
@@ -121,6 +125,10 @@ class Player{
             this.y = 620;
         }
 
+        if (this.accomplishments.piano && this.accomplishments.door && this.accomplishments.cry && this.accomplishments.flashlight){
+            this.over = true;
+        }
+
         this.inputStatus = "";
 
     }
@@ -130,7 +138,9 @@ class Player{
 
     drawPlayer(ctx){
 
-
+        if (this.over){
+            this.end.style.display = "block";
+        }
 
         if (this.status != 'SHINING'){
             ctx.drawImage(this.flashlight, 180, 225);
@@ -145,10 +155,12 @@ class Player{
                 }else{
                     ctx.drawImage(this.boSittingCrying2, this.x - 85, this.y - 285);
                 }
+                this.accomplishments.cry = true;
             }else if (this.musicFrame > 0){
                 let tens = Math.floor(this.musicFrame / 30);
                 tens %= 4;
                 console.log(tens);
+                this.accomplishments.piano = true;
                 switch (tens){
                     case 0:
                         ctx.drawImage(this.boSittingP1, this.x - 70, this.y - 300);
@@ -177,6 +189,7 @@ class Player{
                 }else{
                     ctx.drawImage(this.boStandingCrying2, this.x - 70 - (this.xScale()/2), this.y - 380 - this.yScale(), this.boStandingCrying2.width + this.xScale(), this.boStandingCrying2.height + this.yScale());
                 }
+                this.accomplishments.cry = true;
             }else if (this.doorFrame > 0){
                 let tens = Math.floor(this.doorFrame / 10);
                 tens = tens % 10;
@@ -185,6 +198,7 @@ class Player{
                 }else {
                     ctx.drawImage(this.boStandingDoor2, this.x - 110, this.y - 400);
                 }
+                this.accomplishments.door = true;
             }else if (this.lastMoved == 'front'){
                 ctx.drawImage(this.boStanding, this.x - 110 - (this.xScale()/2), this.y - 420 - this.yScale(), this.boStanding.width + this.xScale(), this.boStanding.height + this.yScale());
             }else if (this.lastMoved == 'left'){
@@ -199,6 +213,7 @@ class Player{
                 }
             }
         }else if (this.status == 'SHINING'){
+            this.accomplishments.flashlight = true;
             if (this.cryFrame > 0){
                 ctx.drawImage(this.boStandingCrying, this.x - 110 - (this.xScale()/2), this.y - 400 - this.yScale(), this.boStandingCrying.width + this.xScale(), this.boStandingCrying.height + this.yScale());
             }else if (this.doorFrame > 0){

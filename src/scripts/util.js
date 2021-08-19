@@ -1,4 +1,4 @@
-export function setUpKeyHandlers(player, surface){
+export function setUpKeyHandlers(player, game){
     document.addEventListener('keydown', e => {
         switch (e.keyCode) {
             case 37:
@@ -52,7 +52,12 @@ export function setUpKeyHandlers(player, surface){
         }
     })
     document.addEventListener('click', e => {
-        
+        if (game.frame >= 500){
+            game.startGame = true;
+        }
+        if (player.over){
+            game.restart = true;
+        }
     })
 }
 
