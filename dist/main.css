@@ -1,3 +1,87 @@
-div{width:1100;height:660}ul{position:absolute;top:0px;left:850px;color:#fff;display:none}#enter{top:0px;left:0px;color:#fff;display:none;list-style-type:none}#day{font-size:250px;list-style-type:none;display:none;top:-200px;left:60px}#end{top:0px;left:100px;color:red;display:none;list-style-type:none}#end li{font-size:30px;margin:5px}#dc{margin-bottom:50px;font-size:150px}#restart{position:absolute;top:480px;left:500px}#game-window{position:relative}#canvas2{position:absolute;top:0px;left:0px}
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+div {
+  width: 1100;
+  height: 660;
+}
 
-/*# sourceMappingURL=main.css.map*/
+ul {
+  position: absolute;
+  top: 0px;
+  left: 850px;
+  color: white;
+  display: none;
+}
+
+#enter {
+  top: 0px;
+  left: 0px;
+  color: white;
+  display: block;
+  list-style-type: none;
+}
+
+#day {
+  font-size: 250px;
+  list-style-type: none;
+  display: none;
+  top: -200px;
+  left: 60px;
+}
+
+#end {
+  top: 0px;
+  left: 100px;
+  color: red;
+  display: block;
+  list-style-type: none;
+}
+
+#end li {
+  font-size: 30px;
+  margin: 5px;
+}
+
+#dc {
+  margin-bottom: 50px;
+  font-size: 150px;
+}
+
+#restart {
+  position: absolute;
+  top: 480px;
+  left: 500px;
+}
+
+#game-window {
+  position: relative;
+}
+
+#canvas2 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+main {
+  display: flex;
+}
+
+#links {
+  position: relative;
+  top: 10px;
+  left: 0px;
+  color: black;
+  display: block;
+  list-style-type: none;
+}
+#links li {
+  width: 80px;
+  height: 80px;
+}
+
+#ln {
+  width: 70px;
+  height: 70px;
+}
