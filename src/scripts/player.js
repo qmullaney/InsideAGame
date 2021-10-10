@@ -74,7 +74,7 @@ class Player{
                 }
             }
         }
-        console.log(this.x + ", " + this.y);
+        // console.log(this.x + ", " + this.y);
         let area = actionZone.getPosition(this);
 
         if (this.cryFrame > 0){
@@ -159,7 +159,7 @@ class Player{
             }else if (this.musicFrame > 0){
                 let tens = Math.floor(this.musicFrame / 30);
                 tens %= 4;
-                console.log(tens);
+                // console.log(tens);
                 this.accomplishments.piano = true;
                 switch (tens){
                     case 0:
