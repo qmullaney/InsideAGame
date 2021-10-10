@@ -1,6 +1,14 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+/*!*****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss (1) ***!
+  \*****************************************************************************************************************************************/
+main {
+  font-family: "Roboto", sans-serif;
+}
+
 div {
   width: 1100;
   height: 660;
@@ -33,7 +41,7 @@ ul {
 #end {
   top: 0px;
   left: 100px;
-  color: red;
+  color: white;
   display: block;
   list-style-type: none;
 }
@@ -52,6 +60,9 @@ ul {
   position: absolute;
   top: 480px;
   left: 500px;
+  background-color: black;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 #game-window {
@@ -84,9 +95,38 @@ main {
 #ln {
   width: 70px;
   height: 70px;
+  filter: grayscale(0%);
+  transition-duration: 0.3s;
+}
+#ln:hover {
+  filter: grayscale(40%);
+  transform: scale(0.9);
 }
 
 #game-window {
   border: 20px solid black;
   height: 660px;
+}
+
+#profile {
+  width: 70px;
+  height: 70px;
+  filter: grayscale(0%);
+  transition-duration: 0.3s;
+  box-sizing: border-box;
+  border: 5px solid black;
+  border-radius: 50%;
+}
+#profile:hover {
+  filter: grayscale(40%);
+  transform: scale(0.9);
+}
+
+#gh {
+  filter: grayscale(0%);
+  transition-duration: 0.3s;
+}
+#gh:hover {
+  filter: grayscale(40%);
+  transform: scale(0.9);
 }

@@ -24,9 +24,45 @@ main {
 #ln {
     width: 70px;
     height: 70px;
+    filter: grayscale(0%);
+
+    transition-duration: .3s;
+    &:hover{
+        filter: grayscale(40%);
+        transform: scale(.9);
+
+    }
 }
 
 #game-window {
     border: 20px solid black;
     height: 660px;
+}
+
+#profile{
+
+    width: 70px;
+    height: 70px;
+    filter: grayscale(0%);
+
+    transition-duration: .3s;
+    &:hover{
+        filter: grayscale(40%);
+        transform: scale(.9);
+
+    }
+    box-sizing: border-box;
+    border: 5px solid black;
+    border-radius: 50%;
+}
+
+#gh{
+    filter: grayscale(0%);
+
+    transition-duration: .3s;
+    &:hover{
+        filter: grayscale(40%);
+        transform: scale(.9);
+
+    }
 }
