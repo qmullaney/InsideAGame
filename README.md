@@ -1,5 +1,5 @@
 # Inside: A Game
-Check out 
+Check out [the live game](http://mullaney.xyz/InsideAGame/)
 ## About the game
 In March of 2021, Bo Burnham released his Netflix 
 special, "Inside", in the middle of the pandemic. 
