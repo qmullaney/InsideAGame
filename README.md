@@ -23,11 +23,11 @@ this game.
 - Npm to manage project dependencies 
 
 ## Brief Look at Inside
-Start your day stuck inside a room
+Start your day stuck inside a room     
 ![Inside: A Game at a glance](/src/assets/ezgif-7-a4eaefffe1ab.gif)
 
 
-Finish your day when you complete all of the activities
+Finish your day when you complete all of the activities    
 ![Inside: A Game at a glance](/src/assets/ezgif-6-9ee97d54bd88.gif)
 
 ## Boundary Checking Code
@@ -60,7 +60,7 @@ for (let i = 0; i < this.boundaries.length; i++){
             }
         }
 ```
-Below is an example of how the above code gets used. ````collision()``` is comprised in part by the code above.    
+Below is an example of how the above code gets used. ```collision()``` is comprised in part by the code above.    
 We apply the ```this.speed``` to ```this.y``` and check whether the player collides into a boundary. If it does, we remove that ```this.y``` change.
 ```jsx
 if (this.up) {
