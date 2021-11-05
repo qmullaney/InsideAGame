@@ -26,31 +26,22 @@ export class Surface{
                 let dy = player.y - el.y;
                 
                 let dist = Math.sqrt(dx * dx + dy * dy);
-                // console.log(dist)
                 if (dist < el.radius) {
                     collided = true;
-                    
-                    // console.log(`${el.radius} rad, ${el.x}, ${el.y}, player: $el`)
                 }
 
             }else if (el.type == "lineTop"){
                 if (el.y > player.y) {
-
-                    // console.log('collided lineTop: ' + el.y + ", " + player.y);
                     collided = true;
                 }
 
             }else if (el.type == "lineBot"){
                 if (el.y <= player.y) {
                     collided = true;
-                    // console.log('collided lineBot')
                 }
-
             }else{
                 if (el.x <= player.x && el.y >= player.y) {
                     collided = true;
-                    // console.log('collided box: ' + el.x + " " + el.y + ", " + player.x + " " + player.y);
-
                 }
             }
         }
