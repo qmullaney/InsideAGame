@@ -1,5 +1,6 @@
-# Inside A Game
-
+# Inside: A Game
+Check out 
+## About the game
 In March of 2021, Bo Burnham released his Netflix 
 special, "Inside", in the middle of the pandemic. 
 Written, recorded, and filmed in one room by on man, 
@@ -15,39 +16,58 @@ this game.
 
 ---
 
-## In "Inside A Game," users will be able to:
-
-- Control Bo as he walks around his room
-- Make Bo cry
-- Pickup and turn on a flashlight
-- Play the piano
-- Try to open the door
-
-### In addition, this project will include
-
-- Sound bytes of piano and Bo crying
-- Floating text and highlights to guide user
-- Title screen and menu
-- A README guide
-- Instill a general feeling of clausterphobia  
-
----
-
-## Wireframes
-
-![Inside A Game Wireframe](./wf.png "Inside A Game Wireframe")
-- Flashlight pickup interaction
-- Piano play interaction 
-- Door try-handle interaction
-
 ## Technologies, Libraries, APIs
-- The Canvas API to manage images 
+- Javascript for game logic
+- The Canvas API to manage images and draw invisible boundaries with circles and squares
 - Webpack to manage JS code
 - Npm to manage project dependencies 
 
-## Implementation Timeline
-- **Friday Afternoon & Weekend:** Decide to use photos or 8-bit art to display game and objects. Cutout the photos or draw 8-bit art of Bo and his room. Setup canvas and put all the art onto the screen, storing the images as objects I can later manipulate.
-- **Monday:** Start to implement logic. Trace places for Bo to walk. Make some collision logic. Test it. 
-- **Tuesday:** Write flashlight and piano code.
-- **Wednesday:** Write instructions guide, dubug, and implement some audio if possible.
-- **Thursday:** Deploy.
+## Brief Look at Inside
+Start your day stuck inside a room
+![Inside: A Game at a glance](/src/assets/ezgif-7-a4eaefffe1ab.gif)
+
+
+Finish your day when you complete all of the activities
+![Inside: A Game at a glance](/src/assets/ezgif-6-9ee97d54bd88.gif)
+
+## Boundary Checking Code
+Here we have the boundary checking loop. This for loop cycles though the different boundaries checks whether player has encroached onto them.
+```jsx
+for (let i = 0; i < this.boundaries.length; i++){
+            let el = this.boundaries[i];
+            if (el.type == "circle"){
+                let dx = player.x - el.x;
+                let dy = player.y - el.y;
+                
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < el.radius) {
+                    collided = true;
+                }
+
+            }else if (el.type == "lineTop"){
+                if (el.y > player.y) {
+                    collided = true;
+                }
+
+            }else if (el.type == "lineBot"){
+                if (el.y <= player.y) {
+                    collided = true;
+                }
+            }else{
+                if (el.x <= player.x && el.y >= player.y) {
+                    collided = true;
+                }
+            }
+        }
+```
+Below is an example of how the above code gets used. ````collision()``` is comprised in part by the code above.    
+We apply the ```this.speed``` to ```this.y``` and check whether the player collides into a boundary. If it does, we remove that ```this.y``` change.
+```jsx
+if (this.up) {
+                this.lastMoved = "back";
+                this.y -= this.speed;
+                if (surface.collision(this)){
+                    this.y += this.speed;
+                }
+            }
+```
