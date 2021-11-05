@@ -71,3 +71,6 @@ if (this.up) {
                 }
             }
 ```
+
+# Future Direction
+There are a few features I could implement to extend this game. I could add more frames when Bo walks around. I could make the flashlight graphics better. I would love to add tears and music animations to the previous animations. 
